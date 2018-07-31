@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   get '/try_haml', to: 'static_pages#try_haml'
 
+  resources :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
