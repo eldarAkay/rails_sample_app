@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
+
     redirect_to users_url
   end
 
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "profile updated"
+
       redirect_to @user
     else
       render 'edit'
@@ -58,12 +60,14 @@ class UsersController < ApplicationController
     unless logged_in?
       store_location
       flash[:danger] = "please log in."
+
       redirect_to login_url
     end
   end
 
   def correct_user
     @user = User.find(params[:id])
+
     redirect_to(root_url) unless current_user?(@user)
   end
 

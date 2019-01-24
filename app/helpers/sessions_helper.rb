@@ -4,7 +4,6 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
-  # Remembers a user in a persistent session.
   def remember(user)
     user.remember
     cookies.permanent.signed[:user_id] = user.id
@@ -17,6 +16,7 @@ module SessionsHelper
 
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
+
     session.delete(:forwarding_url)
   end
 
@@ -24,7 +24,6 @@ module SessionsHelper
     session[:forwarding_url] = request.original_url if request.get?
   end
 
-  # Forgets a persistent session.
   def forget(user)
     user.forget
     cookies.delete(:user_id)

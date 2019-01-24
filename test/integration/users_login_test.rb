@@ -42,7 +42,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
-    # Simulate a user clicking logout in a second window.
     delete logout_path
     follow_redirect!
     assert_select "a[href=?]", login_path
@@ -56,9 +55,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login without remembering" do
-    # Log in to set the cookie.
     log_in_as(@user, remember_me: '1')
-    # Log in again and verify that the cookie is deleted.
     log_in_as(@user, remember_me: '0')
     assert_empty cookies['remember_token']
   end

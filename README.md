@@ -1,4 +1,4 @@
-# README
+## Michael Hartl Rails 5
 
 
 To run the app, clone the repo and then install the needed gems:
